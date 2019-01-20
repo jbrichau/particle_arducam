@@ -6,7 +6,7 @@ SYSTEM_THREAD(ENABLED);
 
 TCPClient client;
 
-#define SERVER_ADDRESS "192.168.2.34"
+#define SERVER_ADDRESS "192.168.0.123"
 #define SERVER_TCP_PORT 5550
 
 #define TX_BUFFER_MAX 1024
@@ -18,8 +18,8 @@ int tx_buffer_index = 0;
 
 //#define SD_CS D2
 
-// set pin A2 as the slave select for the ArduCAM shield
-const int SPI_CS = A2;
+// set pin A5 as the slave select for the ArduCAM shield
+const int SPI_CS = A5;
 
 // allow us to use itoa() in this scope
 //extern char* itoa(int a, char* buffer, unsigned char radix);
@@ -123,10 +123,11 @@ while(1){
     myCAM.write_reg(ARDUCHIP_FRAMES,0x00);
     delay(100);
 
-    myCAM.OV5642_set_JPEG_size(OV5642_320x240);
-    //myCAM.OV5640_set_JPEG_size(OV5642_1600x1200);
-    //myCAM.OV5640_set_JPEG_size(OV5642_640x480);    // ?
-    //delay(100);
+    //myCAM.OV5642_set_JPEG_size(OV5642_320x240);   //works
+    //myCAM.OV5642_set_JPEG_size(OV5642_640x480);   // works
+    //myCAM.OV5642_set_JPEG_size(OV5642_1600x1200); // works
+    myCAM.OV5642_set_JPEG_size(OV5642_1280x960);  // works
+    //myCAM.OV5642_set_JPEG_size(OV5642_2592x1944); //works
 
     // wait a sec`
     delay(1000);
@@ -150,15 +151,6 @@ void loop()
 
     Particle.publish("status", "Taking a picture...");
     Serial.println("Taking a picture...");
-
-
-    //myCAM.OV5640_set_JPEG_size(OV5640_320x240);   //works
-    //myCAM.OV5640_set_JPEG_size(OV5642_1600x1200); //doesn't work
-    //myCAM.OV5640_set_JPEG_size(OV5642_1280x960);  // doesn't work?
-    //myCAM.OV5640_set_JPEG_size(OV5642_640x480);    // ?
-
-    myCAM.OV5642_set_JPEG_size(OV5642_2592x1944); //works
-    delay(100);
 
     //myCAM.set_bit(ARDUCHIP_GPIO,GPIO_PWDN_MASK);
     //myCAM.clear_bit(ARDUCHIP_GPIO,GPIO_PWDN_MASK);

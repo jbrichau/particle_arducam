@@ -197,10 +197,10 @@
 //  #define cbi(sfr, bit) ((*sfr) &= ~_BV(bit))
 
   //big hack here
-  #define pinLO(_pin) (PIN_MAP[_pin].gpio_peripheral->BSRRH = PIN_MAP[_pin].gpio_pin)
-  #define pinHI(_pin) (PIN_MAP[_pin].gpio_peripheral->BSRRL = PIN_MAP[_pin].gpio_pin)
-  #define cbi(_pin, bit)                 pinLO(A2)
-  #define sbi(_pin, bit)                 pinHI(A2)
+  #define pinLO(_pin) pinResetFast(_pin)
+  #define pinHI(_pin) pinSetFast(_pin)
+  #define cbi(_pin, bit)                 pinLO(A5)
+  #define sbi(_pin, bit)                 pinHI(A5)
 
 #elif defined (RASPBERRY_PI)
 	#define regtype volatile uint32_t

@@ -19,7 +19,7 @@ int tx_buffer_index = 0;
 //#define SD_CS D2
 
 // set pin A2 as the slave select for the ArduCAM shield
-const int SPI_CS = A2;
+const int SPI_CS = A5;
 
 // allow us to use itoa() in this scope
 //extern char* itoa(int a, char* buffer, unsigned char radix);

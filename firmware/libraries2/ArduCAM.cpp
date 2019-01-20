@@ -134,8 +134,8 @@ ArduCAM::ArduCAM(byte model ,int CS)
 		#if defined(ESP8266)
 		  B_CS = CS;
 		#else
-		  P_CS  = portOutputRegister(digitalPinToPort(CS));
-		  B_CS  = digitalPinToBitMask(CS);
+//		  P_CS  = portOutputRegister(digitalPinToPort(CS));
+//		  B_CS  = digitalPinToBitMask(CS);
 		#endif
 	#endif
  #if defined (RASPBERRY_PI)
